@@ -16,7 +16,7 @@ export default async function handler(
   // get data from your database, for real
   await client.connect()
   const database = client.db("bpl-all-users");
-  const unbannedUsers = database.collection('unbanned-users')
+  const unbannedUsers = database.collection('banned-users')
   const usersList = await unbannedUsers.find({}).limit(50).toArray()
 
   res.status(200).send(usersList)
