@@ -28,14 +28,14 @@ const BannedUsersPage: NextPage = () => {
         </div>
         <h1>Banned Users</h1>
         <div>
-          <BannedUsersComponent />
+          <BannedUsersContainer />
         </div>
       </div>
     </>
   )
 }
 
-const BannedUsersComponent: NextComponentType = () => {
+const BannedUsersContainer: NextComponentType = () => {
   const { data, error } = useSWR("/api/get-banned-users", fetcher)
   if (error) return <div>Error fetching banned users.</div>
   if (!data) return <div>Loading banned users...</div>
@@ -45,6 +45,14 @@ const BannedUsersComponent: NextComponentType = () => {
       {data.map((userObject: userObjectType) => (
         <div>{userObject.username}</div>
       ))}
+    </div>
+  )
+}
+
+const BannedUserComponent: NextComponentType = () => {
+  return (
+    <div>
+      
     </div>
   )
 }

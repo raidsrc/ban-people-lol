@@ -14,12 +14,12 @@ export default async function handler(
 ) {
   // get data from your database, for real
   try {
-    // receive a delete request from the client. the delete request should have 
-    await client.connect() 
+    // receive a delete request from the client. 
+    await client.connect()
     const database = client.db("bpl-all-users");
     const bannedUsers = database.collection('banned-users')
-    const deleteABannedUser = await bannedUsers.deleteOne({"_id": new ObjectId(req.body.id)})
-    res.status(200).send(deleteABannedUser)
+    const deleteBannedUserResult = await bannedUsers.deleteOne({ "_id": new ObjectId(req.body.id) })
+    res.status(200).send({ message: `Deleted ${deleteBannedUserResult.deletedCount} document with ObjectId ${req.body.id}` })
   } catch (err) {
     console.error("Something went wrong:", err)
     res.status(400).send({ message: String(err) })
