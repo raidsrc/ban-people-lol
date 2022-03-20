@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { MongoClient } from "mongodb";
-const connectionString: string = process.env.ATLAS_URI || ""
-const client = new MongoClient(connectionString)
+// import { MongoClient } from "mongodb";
+// const connectionString: string = process.env.ATLAS_URI || ""
+// const client = new MongoClient(connectionString)
+import { getMongoDbConnection } from "../api/module-mongo-setup"
 
 type errorMessage = {
   message: string,
@@ -12,10 +13,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<errorMessage | usersList>
 ) {
-  // get data from your database, for real
   try {
-    await client.connect()
-    const database = client.db("bpl-all-users");
+    const database = await getMongoDbConnection()
     const unbannedUsers = database.collection('banned-users')
     const usersList = await unbannedUsers.find({}).limit(50).toArray()
     res.status(200).send(usersList)
@@ -23,6 +22,5 @@ export default async function handler(
     console.error("Something went wrong:", err)
     res.status(400).send({ message: String(err) })
   }
-
 }
 
