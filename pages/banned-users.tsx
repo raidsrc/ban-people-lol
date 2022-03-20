@@ -38,7 +38,7 @@ const BannedUsersContainer = () => {
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <BannedUserComponent userObject={userObject} mutate={mutate}/>
+          <BannedUserComponent userObject={userObject} mutate={mutate} />
         </div>
       ))}
     </div>
