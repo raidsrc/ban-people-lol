@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import useSWR, { KeyedMutator } from 'swr'
+// TODO: investigate global mutator signature and how it's diff from keyed
 import { useState } from 'react'
 import HoverWindow from '../components/HoverWindow'
 import { UserComponentProps, userObjectType } from './types'
