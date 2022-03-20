@@ -12,7 +12,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<errorMessage | usersList>
 ) {
-  // get data from your database, for real
   try {
     await client.connect() // why don't we return anything from client.connect()? because client.connect() mutates the value of client by connecting to mongodb. no need to return anything. connect() is one of those methods that does something for/to the object that called it.
     const database = client.db("bpl-all-users");

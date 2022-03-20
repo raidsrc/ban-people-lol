@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-// import { MongoClient } from "mongodb";
-// const connectionString: string = process.env.ATLAS_URI || ""
-// const client = new MongoClient(connectionString)
-import { getMongoDbConnection } from "../api/module-mongo-setup"
+import { MongoClient } from "mongodb";
+const connectionString: string = process.env.ATLAS_URI || ""
+const client = new MongoClient(connectionString)
 
 type errorMessage = {
   message: string,
@@ -14,9 +13,10 @@ export default async function handler(
   res: NextApiResponse<errorMessage | usersList>
 ) {
   try {
-    const database = await getMongoDbConnection()
-    const unbannedUsers = database.collection('banned-users')
-    const usersList = await unbannedUsers.find({}).limit(50).toArray()
+    await client.connect() // why don't we return anything from client.connect()? because client.connect() mutates the value of client by connecting to mongodb. no need to return anything. connect() is one of those methods that does something for/to the object that called it.
+    const database = client.db("bpl-all-users");
+    const bannedUsers = database.collection('banned-users')
+    const usersList = await bannedUsers.find({}).limit(50).toArray()
     res.status(200).send(usersList)
   } catch (err) {
     console.error("Something went wrong:", err)
