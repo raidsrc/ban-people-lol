@@ -48,7 +48,9 @@ const UnbannedUsersContainer = () => {
   return (
     <div>
       {data.map((userObject: userObjectType) => (
-        <div><UnbannedUserComponent userObject={userObject} /></div>
+        <div key={String(userObject._id)}>
+          <UnbannedUserComponent userObject={userObject} />
+        </div>
       ))}
     </div>
   )
@@ -56,10 +58,24 @@ const UnbannedUsersContainer = () => {
 
 const UnbannedUserComponent = ({ userObject }: UserComponentProps) => {
   return (
-    <button className="my-1 p-1 border-2">
+    <button onClick={() => banUser(userObject._id)} className="my-1 p-1 border-2">
       {userObject.username}
     </button>
   )
+}
+
+async function banUser(userId: ObjectId) {
+  const reqBody = JSON.stringify({
+    "_id": userId
+  })
+  const settings = {
+    method: 'POST',
+    body: reqBody,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+  await fetch("/api/ban-user", settings)
 }
 
 

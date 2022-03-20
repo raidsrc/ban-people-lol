@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { MongoClient, ObjectId } from "mongodb";
 const connectionString: string = process.env.ATLAS_URI || ""
@@ -30,6 +29,8 @@ export default async function handler(
   } catch (err) {
     console.error("Something went wrong:", err)
     res.status(400).send({ message: String(err) })
+  } finally {
+    client.close()
   }
 
 }
