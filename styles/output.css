@@ -521,12 +521,30 @@ a {
   padding-right: 7rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .flex {
   display: flex;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .text-center {
