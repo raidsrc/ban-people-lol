@@ -1,12 +1,8 @@
 import { NextPage } from 'next'
-import { ObjectId } from 'mongodb'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import useSWR, { KeyedMutator } from 'swr'
-import { useState } from 'react'
-import HoverWindow from '../components/HoverWindow'
-import { userObjectType, UserButtonComponentProps } from './types'
+import useSWR from 'swr'
+import { userObjectType } from './types'
 import UserButtonComponent from '../components/UserButtonComponent'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))

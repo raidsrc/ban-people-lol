@@ -1,13 +1,9 @@
 import { NextPage } from 'next'
-import { ObjectId } from 'mongodb'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import useSWR, { KeyedMutator } from 'swr'
+import useSWR from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
-import { useContext, useState, createContext } from 'react'
-import HoverWindow from '../components/HoverWindow'
-import { UserButtonComponentProps, userObjectType } from './types'
+import { userObjectType } from './types'
 import UserButtonComponent from '../components/UserButtonComponent'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
