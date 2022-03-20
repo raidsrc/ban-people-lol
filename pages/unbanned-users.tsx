@@ -1,9 +1,11 @@
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 import { Int32, ObjectId, Timestamp } from 'mongodb'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import useSWR from 'swr'
+import { ReactNode, Key, useState } from 'react'
+import HoverWindow from '../components/HoverWindow'
 import { UserComponentProps, userObjectType } from './types'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
@@ -47,10 +49,16 @@ const UnbannedUsersContainer = () => {
 }
 
 const UnbannedUserComponent = ({ userObject }: UserComponentProps) => {
+  const [showHoverWindow, setShowHoverWindow] = useState(false)
   return (
-    <button onClick={() => banUser(userObject._id)} className="my-1 p-1 border-2">
-      {userObject.username}
-    </button>
+    <div>
+      <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)} onClick={() => banUser(userObject._id)} className="my-1 p-1 border-2">
+        <span>{userObject.username}</span>
+      </button>
+      <span className='relative'>
+        {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
+      </span>
+    </div>
   )
 }
 
