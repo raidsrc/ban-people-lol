@@ -4,21 +4,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { ReactNode, Key } from 'react'
+import { ReactNode, Key, useState } from 'react'
+import HoverWindow from '../components/HoverWindow'
+import type { userObjectType, UserComponentProps } from './types'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
-
-type userObjectType = {
-  _id: ObjectId,
-  username: string,
-  fname: string,
-  lname: string,
-  "number-of-times-banned": Int32,
-  "date-joined": Timestamp
-}
-type UserComponentProps = {
-  userObject: userObjectType
-}
 
 const BannedUsersPage: NextPage = () => {
   return (
@@ -56,10 +46,16 @@ const BannedUsersContainer = () => {
 }
 
 const BannedUserComponent = ({ userObject }: UserComponentProps) => {
+  const [showHoverWindow, setShowHoverWindow] = useState(false)
   return (
-    <button onClick={() => unbanUser(userObject._id)} className="my-1 p-1 border-2">
-      {userObject.username}
-    </button>
+    <div>
+      <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)} onClick={() => unbanUser(userObject._id)} className="my-1 p-1 border-2">
+        <span>{userObject.username}</span>
+      </button>
+      <span className='relative'>
+        {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
+      </span>
+    </div>
   )
 }
 

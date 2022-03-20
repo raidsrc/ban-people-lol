@@ -14,9 +14,9 @@ const Home: NextPage = () => {
         <title>Ban People Lol</title>
       </Head>
       <div className='std-container'>
-        <h1>heading 1</h1>
-        <p>Paragraph. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia quasi facilis at ullam minima laudantium enim omnis quam a itaque, sapiente nihil eum dolorum quos est, vero iure veniam minus placeat ratione perspiciatis harum. Quisquam sapiente nobis fugit ad magni!</p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia qui quis, voluptatem consequatur vel enim. Illo aspernatur corporis, et autem iste doloremque rem iusto, magni adipisci id incidunt molestiae perferendis tenetur minima natus ex nulla aliquid veniam quaerat exercitationem atque? Odio animi laboriosam reiciendis neque aliquid autem error aperiam similique ut at, cupiditate enim quis magnam iste sapiente quod doloribus, adipisci velit aliquam perferendis asperiores distinctio odit esse! Optio vero sunt quae placeat voluptatum ut animi eveniet cum voluptas velit.</p>
+        <h1>BPL Forums User Lists</h1>
+        <p>This page contains links to the BPL Forums User Lists. There are two lists: one for banned users and one for unbanned users.</p>
+        <p>It turns out that our forum's users aren't very good internet citizens. They've been acting up and getting themselves banned left and right. If you hover over each user, you'll get to see their user info, including how many times they've been banned in the past. Sometimes the number gets quite high. Don't be surprised. </p>
         <div>
           <Link href="/banned-users"><a>Banned Users List</a></Link>
         </div>
