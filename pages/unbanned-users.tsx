@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import useSWR, { KeyedMutator } from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
-import { useState } from 'react'
+import { useContext, useState, createContext } from 'react'
 import HoverWindow from '../components/HoverWindow'
 import { UserButtonComponentProps, userObjectType } from './types'
 import UserButtonComponent from '../components/UserButtonComponent'
@@ -37,12 +37,13 @@ const UnbannedUsersContainer = () => {
   const { data, error, mutate } = useSWR("/api/get-unbanned-users", fetcher)
   if (error) return <div>Error fetching unbanned users.</div>
   if (!data) return <div>Loading unbanned users...</div>
+  const bannedUsers = false
 
   return (
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <UserButtonComponent userObject={userObject} mutate={mutate} ban />
+          <UserButtonComponent userObject={userObject} mutate={mutate} bannedUsers={bannedUsers} />
         </div>
       ))}
     </div>

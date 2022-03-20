@@ -12,6 +12,5 @@ export type userObjectType = {
 export type UserButtonComponentProps = {
   userObject: userObjectType,
   mutate?: KeyedMutator<String>,
-  ban?: boolean,
-  unban?: boolean
+  bannedUsers?: boolean,
 }
