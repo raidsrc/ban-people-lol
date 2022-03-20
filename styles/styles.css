@@ -37,3 +37,18 @@
     @apply py-10 px-28
   }
 }
+
+.hover-window-enter {
+  opacity: 0;
+}
+.hover-window-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.hover-window-exit {
+  opacity: 1;
+}
+.hover-window-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

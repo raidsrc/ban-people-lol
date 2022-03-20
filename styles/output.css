@@ -529,8 +529,8 @@ a {
   position: relative;
 }
 
-.-bottom-\[19px\] {
-  bottom: -19px;
+.-bottom-\[5rem\] {
+  bottom: -5rem;
 }
 
 .top-12 {
@@ -539,86 +539,6 @@ a {
 
 .-left-2 {
   left: -0.5rem;
-}
-
-.-bottom-\[10px\] {
-  bottom: -10px;
-}
-
-.-bottom-\[18em\] {
-  bottom: -18em;
-}
-
-.-bottom-\[18\] {
-  bottom: -18;
-}
-
-.-bottom-\[16\] {
-  bottom: -16;
-}
-
-.-bottom-\[200px\] {
-  bottom: -200px;
-}
-
-.-bottom-\[100px\] {
-  bottom: -100px;
-}
-
-.-bottom-\[800px\] {
-  bottom: -800px;
-}
-
-.-bottom-\[80px\] {
-  bottom: -80px;
-}
-
-.-bottom-\[72px\] {
-  bottom: -72px;
-}
-
-.-bottom-\[76px\] {
-  bottom: -76px;
-}
-
-.-bottom-\[12em\] {
-  bottom: -12em;
-}
-
-.-bottom-\[4em\] {
-  bottom: -4em;
-}
-
-.-bottom-\[4rem\] {
-  bottom: -4rem;
-}
-
-.-bottom-\[40rem\] {
-  bottom: -40rem;
-}
-
-.-bottom-\[40em\] {
-  bottom: -40em;
-}
-
-.-bottom-\[10rem\] {
-  bottom: -10rem;
-}
-
-.-bottom-\[7rem\] {
-  bottom: -7rem;
-}
-
-.-bottom-\[3rem\] {
-  bottom: -3rem;
-}
-
-.-bottom-\[5rem\] {
-  bottom: -5rem;
-}
-
-.-bottom-\[6rem\] {
-  bottom: -6rem;
 }
 
 .my-1 {
@@ -689,19 +609,14 @@ a {
   background-color: inherit;
 }
 
-.bg-red-500 {
+.bg-green-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
 }
 
 .bg-red-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
-}
-
-.bg-green-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-90 {
@@ -733,4 +648,22 @@ a {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover-window-enter {
+  opacity: 0;
+}
+
+.hover-window-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.hover-window-exit {
+  opacity: 1;
+}
+
+.hover-window-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }
