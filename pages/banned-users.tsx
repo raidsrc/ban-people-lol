@@ -34,13 +34,12 @@ const BannedUsersContainer = () => {
   const { data, error, mutate } = useSWR("/api/get-banned-users", fetcher)
   if (error) return <div>Error fetching banned users.</div>
   if (!data) return <div>Loading banned users...</div>
-  const bannedUsers = true
 
   return (
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <UserButtonComponent userObject={userObject} mutate={mutate} bannedUsers={bannedUsers} />
+          <UserButtonComponent userObject={userObject} mutate={mutate} bannedUsers />
         </div>
       ))}
     </div>
