@@ -1,4 +1,5 @@
 import { Int32, Timestamp, ObjectId } from "mongodb"
+import { KeyedMutator } from "swr"
 
 export type userObjectType = {
   _id: ObjectId,
@@ -10,4 +11,5 @@ export type userObjectType = {
 }
 export type UserComponentProps = {
   userObject: userObjectType,
+  mutate?: KeyedMutator<String>
 }

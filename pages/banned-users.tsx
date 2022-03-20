@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import useSWR from 'swr'
+import useSWR, { KeyedMutator } from 'swr'
 import { useState } from 'react'
 import HoverWindow from '../components/HoverWindow'
 import { userObjectType, UserComponentProps } from './types'
@@ -30,7 +30,7 @@ const BannedUsersPage: NextPage = () => {
 }
 
 const BannedUsersContainer = () => {
-  const { data, error } = useSWR("/api/get-banned-users", fetcher)
+  const { data, error, mutate } = useSWR("/api/get-banned-users", fetcher)
   if (error) return <div>Error fetching banned users.</div>
   if (!data) return <div>Loading banned users...</div>
 
@@ -38,14 +38,14 @@ const BannedUsersContainer = () => {
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <BannedUserComponent userObject={userObject} />
+          <BannedUserComponent userObject={userObject} mutate={mutate}/>
         </div>
       ))}
     </div>
   )
 }
 
-const BannedUserComponent = ({ userObject }: UserComponentProps) => {
+const BannedUserComponent = ({ userObject, mutate }: UserComponentProps) => {
   const [showHoverWindow, setShowHoverWindow] = useState(false)
   const [showSelf, setShowSelf] = useState(true)
   return (
@@ -53,7 +53,7 @@ const BannedUserComponent = ({ userObject }: UserComponentProps) => {
       {showSelf ? <div>
         <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)}
           onClick={() => {
-            unbanUser(userObject._id)
+            unbanUser(userObject._id, mutate)
             setShowSelf(false)
           }} className="my-0.5 p-1 border-2">
           <span>{userObject.username}</span>
@@ -66,7 +66,7 @@ const BannedUserComponent = ({ userObject }: UserComponentProps) => {
   )
 }
 
-async function unbanUser(userId: ObjectId) {
+async function unbanUser(userId: ObjectId, mutate: KeyedMutator<String> | undefined) {
   const reqBody = JSON.stringify({
     "_id": userId
   })
@@ -78,6 +78,7 @@ async function unbanUser(userId: ObjectId) {
     }
   }
   await fetch("/api/unban-user", settings)
+  if (mutate) mutate(fetcher("/api/get-banned-users"))
 }
 
 export default BannedUsersPage
