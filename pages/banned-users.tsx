@@ -1,10 +1,10 @@
 import { NextPage } from 'next'
-import { Int32, ObjectId, Timestamp } from 'mongodb'
+import { ObjectId } from 'mongodb'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { ReactNode, Key, useState } from 'react'
+import { useState } from 'react'
 import HoverWindow from '../components/HoverWindow'
 import { userObjectType, UserComponentProps } from './types'
 
@@ -47,15 +47,22 @@ const BannedUsersContainer = () => {
 
 const BannedUserComponent = ({ userObject }: UserComponentProps) => {
   const [showHoverWindow, setShowHoverWindow] = useState(false)
+  const [showSelf, setShowSelf] = useState(true)
   return (
-    <div>
-      <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)} onClick={() => unbanUser(userObject._id)} className="my-1 p-1 border-2">
-        <span>{userObject.username}</span>
-      </button>
-      <span className='relative'>
-        {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
-      </span>
-    </div>
+    <>
+      {showSelf ? <div>
+        <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)}
+          onClick={() => {
+            unbanUser(userObject._id)
+            setShowSelf(false)
+          }} className="my-0.5 p-1 border-2">
+          <span>{userObject.username}</span>
+        </button>
+        <span className='relative'>
+          {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
+        </span>
+      </div> : ""}
+    </>
   )
 }
 

@@ -9,5 +9,5 @@ export type userObjectType = {
   "date-joined": Timestamp
 }
 export type UserComponentProps = {
-  userObject: userObjectType
+  userObject: userObjectType,
 }
