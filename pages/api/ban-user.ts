@@ -35,8 +35,6 @@ export default async function handler(
   } catch (err) {
     console.error("Something went wrong:", err)
     res.status(400).send({ message: String(err) })
-  } finally {
-    await client.close()
   }
 
 }

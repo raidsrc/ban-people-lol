@@ -6,7 +6,8 @@ import Link from 'next/link'
 import useSWR, { KeyedMutator } from 'swr'
 import { useState } from 'react'
 import HoverWindow from '../components/HoverWindow'
-import { userObjectType, UserComponentProps } from './types'
+import { userObjectType, UserButtonComponentProps } from './types'
+import UserButtonComponent from '../components/UserButtonComponent'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -38,47 +39,11 @@ const BannedUsersContainer = () => {
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <BannedUserComponent userObject={userObject} mutate={mutate} />
+          <UserButtonComponent userObject={userObject} mutate={mutate} unban/>
         </div>
       ))}
     </div>
   )
-}
-
-const BannedUserComponent = ({ userObject, mutate }: UserComponentProps) => {
-  const [showHoverWindow, setShowHoverWindow] = useState(false)
-  const [showSelf, setShowSelf] = useState(true)
-  return (
-    <>
-      {showSelf ? <div>
-        <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)}
-          onClick={() => {
-            unbanUser(userObject._id, mutate)
-            setShowSelf(false)
-          }} className="my-0.5 p-1 border-2">
-          <span>{userObject.username}</span>
-        </button>
-        <span className='relative'>
-          {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
-        </span>
-      </div> : ""}
-    </>
-  )
-}
-
-async function unbanUser(userId: ObjectId, mutate: KeyedMutator<String> | undefined) {
-  const reqBody = JSON.stringify({
-    "_id": userId
-  })
-  const settings = {
-    method: 'POST',
-    body: reqBody,
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }
-  await fetch("/api/unban-user", settings)
-  if (mutate) mutate(fetcher("/api/get-banned-users"))
 }
 
 export default BannedUsersPage

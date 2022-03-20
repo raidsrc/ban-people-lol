@@ -29,7 +29,7 @@ export default async function handler(
   } catch (err) {
     console.error("Something went wrong:", err)
     res.status(400).send({ message: String(err) })
-  } // waiting for client.close() takes for fucking ever. a response comes back in 100-200ms without it. a response comes back in 700-900ms with it. 
+  } // waiting for client.close() takes for fucking ever. a response comes back in 200-300ms without it. a response comes back in 700-900ms with it. 
 
 }
 

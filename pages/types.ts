@@ -9,7 +9,9 @@ export type userObjectType = {
   "number-of-times-banned": Int32,
   "date-joined": Timestamp
 }
-export type UserComponentProps = {
+export type UserButtonComponentProps = {
   userObject: userObjectType,
-  mutate?: KeyedMutator<String>
+  mutate?: KeyedMutator<String>,
+  ban?: boolean,
+  unban?: boolean
 }

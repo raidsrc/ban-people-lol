@@ -7,7 +7,8 @@ import useSWR, { KeyedMutator } from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
 import { useState } from 'react'
 import HoverWindow from '../components/HoverWindow'
-import { UserComponentProps, userObjectType } from './types'
+import { UserButtonComponentProps, userObjectType } from './types'
+import UserButtonComponent from '../components/UserButtonComponent'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -41,47 +42,12 @@ const UnbannedUsersContainer = () => {
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <UnbannedUserComponent userObject={userObject} mutate={mutate} />
+          <UserButtonComponent userObject={userObject} mutate={mutate} ban />
         </div>
       ))}
     </div>
   )
 }
 
-const UnbannedUserComponent = ({ userObject, mutate }: UserComponentProps) => {
-  const [showHoverWindow, setShowHoverWindow] = useState(false)
-  const [showSelf, setShowSelf] = useState(true)
-  return (
-    <>
-      {showSelf ? <div>
-        <button onMouseEnter={() => setShowHoverWindow(true)} onMouseLeave={() => setShowHoverWindow(false)}
-          onClick={() => {
-            banUser(userObject._id, mutate)
-            setShowSelf(false)
-          }} className="my-0.5 p-1 border-2">
-          <span>{userObject.username}</span>
-        </button>
-        <span className='relative'>
-          {showHoverWindow ? <HoverWindow userObject={userObject} /> : ""}
-        </span>
-      </div> : ""}
-    </>
-  )
-}
-
-async function banUser(userId: ObjectId, mutate: KeyedMutator<String> | undefined) {
-  const reqBody = JSON.stringify({
-    "_id": userId
-  })
-  const settings = {
-    method: 'POST',
-    body: reqBody,
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }
-  await fetch("/api/ban-user", settings)
-  if (mutate) mutate(fetcher("/api/get-unbanned-users"))
-}
 
 export default UnbannedUsersPage
