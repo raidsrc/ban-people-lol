@@ -5,7 +5,7 @@ import type { userObjectType } from "../pages/types"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
-const HoverWindow = ({ userObject, bannedUsers, setShowSelf, mutate }: {
+const SettingsMenu = ({ userObject, bannedUsers, setShowSelf, mutate }: {
   userObject: userObjectType
   bannedUsers: boolean | undefined
   setShowSelf: Dispatch<SetStateAction<boolean>>
@@ -65,4 +65,4 @@ async function unbanUser(userId: ObjectId, mutate: KeyedMutator<String> | undefi
   if (mutate) mutate(fetcher("/api/get-banned-users"))
 }
 
-export default HoverWindow
+export default SettingsMenu

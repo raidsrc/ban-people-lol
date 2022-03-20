@@ -5,6 +5,8 @@ import useSWR from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
 import { userObjectType } from './types'
 import UserButtonComponent from '../components/UserButtonComponent'
+import { CSSTransition } from 'react-transition-group'
+import { Component, useState, useEffect } from 'react'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
