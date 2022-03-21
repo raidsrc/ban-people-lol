@@ -4,10 +4,9 @@ import Link from 'next/link'
 import useSWR from 'swr'
 import { userObjectType } from './_types'
 import UserButtonComponent from '../components/UserButtonComponent'
-import { createContext, useContext } from 'react'
+import { BanContext } from './_contexts'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
-export const BanContext = createContext({ bannedUsers: true })
 
 const BannedUsersPage: NextPage = () => {
   return (

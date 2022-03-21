@@ -49,7 +49,7 @@ async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Objec
     if (mutate) mutate(fetcher("/api/get-banned-users"))
   }
   else {
-    await fetch("/api/ban-user")
+    await fetch("/api/ban-user", settings)
     if (mutate) mutate(fetcher("/api/get-unbanned-users"))
   }
 }
