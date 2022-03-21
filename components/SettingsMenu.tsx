@@ -15,15 +15,14 @@ const SettingsMenu = ({ userObject, bannedUsers, setShowUserButtonComponent, set
 }) => {
   const settingsMenuRef = useRef(null)
   const handleClick = (event: Event) => {
-    console.log(event.target)
     if (event.target != settingsMenuRef.current) {
       setShowSettingsMenu(false)
     }
   }
   useEffect(() => {
-    window.addEventListener("mousedown", handleClick)
+    document.addEventListener("mousedown", handleClick)
     return () => {
-      window.removeEventListener("mousedown", handleClick)
+      document.removeEventListener("mousedown", handleClick)
     }
   }, [])
 

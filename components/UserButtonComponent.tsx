@@ -12,9 +12,9 @@ const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComp
   const [showUserButtonComponent, setShowUserButtonComponent] = useState(true)
   const userButtonComponentRef = useRef(null)
   return (
-    <div ref={userButtonComponentRef} className="w-min">
+    <div ref={userButtonComponentRef} className="w-min ">
       {showUserButtonComponent ?
-        <div className="my-1 p-1 px-2 border-2 flex items-center min-w-max">
+        <div className="my-1 p-1 px-2 border-2 flex items-center min-w-max hover:border-gray-500 transition duration-150">
           <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
           <button onClick={() => { setShowSettingsMenu(prev => !prev) }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
