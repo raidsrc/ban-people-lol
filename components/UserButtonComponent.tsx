@@ -37,7 +37,7 @@ const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComp
           </button>
           <span className='relative'>
             <CSSTransition in={showHoverWindow} timeout={200} classNames="hover-window" unmountOnExit>
-              <HoverWindow userObject={userObject} />
+              {showSettingsMenu ? <div /> : <HoverWindow userObject={userObject} />}
             </CSSTransition>
             <CSSTransition in={showSettingsMenu} timeout={200} classNames="hover-window" unmountOnExit>
               <SettingsMenu userObject={userObject} bannedUsers={bannedUsers} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate}/>
