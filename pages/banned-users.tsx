@@ -2,10 +2,12 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { userObjectType } from './types'
+import { userObjectType } from './_types'
 import UserButtonComponent from '../components/UserButtonComponent'
+import { createContext, useContext } from 'react'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
+export const BanContext = createContext({bannedUsers: true})
 
 const BannedUsersPage: NextPage = () => {
   return (
@@ -30,12 +32,12 @@ const BannedUsersContainer = () => {
   const { data, error, mutate } = useSWR("/api/get-banned-users", fetcher)
   if (error) return <div>Error fetching banned users.</div>
   if (!data) return <div>Loading banned users...</div>
-
+  
   return (
     <div>
       {data.map((userObject: userObjectType) => (
         <div key={String(userObject._id)}>
-          <UserButtonComponent userObject={userObject} mutate={mutate} bannedUsers />
+          <UserButtonComponent userObject={userObject} mutate={mutate} />
         </div>
       ))}
     </div>

@@ -1,12 +1,13 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
-import { userObjectType } from './types'
+import { userObjectType } from './_types'
 import UserButtonComponent from '../components/UserButtonComponent'
 import { CSSTransition } from 'react-transition-group'
-import { Component, useState, useEffect } from 'react'
+import { Component, useState, useEffect, createContext, useContext } from 'react'
+import { BanContext } from './_contexts'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -24,7 +25,9 @@ const UnbannedUsersPage: NextPage = () => {
         </div>
         <h1>Unbanned Users</h1>
         <div>
-          <UnbannedUsersContainer />
+          <BanContext.Provider value={{ bannedUsers: false }}>
+            <UnbannedUsersContainer />
+          </BanContext.Provider>
         </div>
       </div>
     </>

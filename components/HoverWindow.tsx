@@ -1,4 +1,4 @@
-import type { userObjectType } from "../pages/types"
+import type { userObjectType } from "../pages/_types"
 
 
 const HoverWindow = ({ userObject }: {

@@ -1,12 +1,13 @@
 import { KeyedMutator } from "swr"
 import { ObjectId } from "mongodb"
 import HoverWindow from "./HoverWindow"
-import { useState, useRef, useEffect, MutableRefObject } from "react"
-import { UserButtonComponentProps } from "../pages/types"
+import { useState, useRef, useEffect, MutableRefObject, useContext, createContext } from "react"
+import { UserButtonComponentProps } from "../pages/_types"
 import { CSSTransition } from "react-transition-group"
 import SettingsMenu from "./SettingsMenu"
 
-const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComponentProps) => {
+
+const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) => {
   const [showHoverWindow, setShowHoverWindow] = useState(false)
   const [showSettingsMenu, setShowSettingsMenu] = useState(false)
   const [showUserButtonComponent, setShowUserButtonComponent] = useState(true)
@@ -27,6 +28,7 @@ const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComp
 
   return (
     <div className="w-min ">
+
       {showUserButtonComponent ?
         <div ref={userButtonComponentRef} className="my-1 p-1 px-2 border-2 flex items-center min-w-max hover:border-gray-500 transition duration-150">
           <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
@@ -40,10 +42,11 @@ const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComp
               {showSettingsMenu ? <div /> : <HoverWindow userObject={userObject} />}
             </CSSTransition>
             <CSSTransition in={showSettingsMenu} timeout={200} classNames="hover-window" unmountOnExit>
-              <SettingsMenu userObject={userObject} bannedUsers={bannedUsers} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate}/>
+              <SettingsMenu userObject={userObject} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate} />
             </CSSTransition>
           </span>
         </div> : ""}
+
     </div>
   )
 }
