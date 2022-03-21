@@ -7,7 +7,7 @@ import UserButtonComponent from '../components/UserButtonComponent'
 import { createContext, useContext } from 'react'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
-export const BanContext = createContext({bannedUsers: true})
+export const BanContext = createContext({ bannedUsers: true })
 
 const BannedUsersPage: NextPage = () => {
   return (
@@ -21,7 +21,9 @@ const BannedUsersPage: NextPage = () => {
         </div>
         <h1>Banned Users</h1>
         <div>
-          <BannedUsersContainer />
+          <BanContext.Provider value={{ bannedUsers: true }}>
+            <BannedUsersContainer />
+          </BanContext.Provider>
         </div>
       </div>
     </>
@@ -32,7 +34,7 @@ const BannedUsersContainer = () => {
   const { data, error, mutate } = useSWR("/api/get-banned-users", fetcher)
   if (error) return <div>Error fetching banned users.</div>
   if (!data) return <div>Loading banned users...</div>
-  
+
   return (
     <div>
       {data.map((userObject: userObjectType) => (

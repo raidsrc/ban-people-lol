@@ -17,8 +17,7 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
   const bannedOrUnbanned = useContext(BanContext)
 
   function handleBanButtonClick() {
-    if (bannedOrUnbanned.bannedUsers) unbanUser(userObject._id, mutate)
-    else banUser(userObject._id, mutate)
+    banOrUnbanUser(userObject._id, mutate, bannedOrUnbanned.bannedUsers)
     setShowUserButtonComponent(false)
   }
   return (
@@ -34,8 +33,7 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
   )
 }
 
-
-async function banUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined) {
+async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined, bannedUsers: boolean) {
   const reqBody = JSON.stringify({
     "_id": userId
   })
@@ -46,23 +44,14 @@ async function banUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | u
       'Content-Type': 'application/json',
     }
   }
-  await fetch("/api/ban-user", settings)
-  if (mutate) mutate(fetcher("/api/get-unbanned-users"))
-}
-
-async function unbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined) {
-  const reqBody = JSON.stringify({
-    "_id": userId
-  })
-  const settings = {
-    method: 'POST',
-    body: reqBody,
-    headers: {
-      'Content-Type': 'application/json',
-    }
+  if (bannedUsers) {
+    await fetch("/api/unban-user", settings)
+    if (mutate) mutate(fetcher("/api/get-banned-users"))
   }
-  await fetch("/api/unban-user", settings)
-  if (mutate) mutate(fetcher("/api/get-banned-users"))
+  else {
+    await fetch("/api/ban-user")
+    if (mutate) mutate(fetcher("/api/get-unbanned-users"))
+  }
 }
 
 export default SettingsMenu
