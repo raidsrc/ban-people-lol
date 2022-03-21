@@ -1,30 +1,20 @@
 import { ObjectId } from "mongodb"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from "react"
 import { KeyedMutator } from "swr"
 import type { userObjectType } from "../pages/types"
 import { useRef } from "react"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
-const SettingsMenu = ({ userObject, bannedUsers, setShowUserButtonComponent, setShowSettingsMenu, mutate }: {
+const SettingsMenu = ({ userObject, bannedUsers, setShowUserButtonComponent, setShowSettingsMenu, settingsMenuRef, mutate }: {
   userObject: userObjectType
   bannedUsers: boolean | undefined
   setShowUserButtonComponent: Dispatch<SetStateAction<boolean>>
   setShowSettingsMenu: Dispatch<SetStateAction<boolean>>
   mutate: KeyedMutator<String>
+  settingsMenuRef: MutableRefObject<any>
 }) => {
-  const settingsMenuRef = useRef(null)
-  const handleClick = (event: Event) => {
-    if (event.target != settingsMenuRef.current) {
-      setShowSettingsMenu(false)
-    }
-  }
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick)
-    return () => {
-      document.removeEventListener("mousedown", handleClick)
-    }
-  }, [])
+  
 
   function handleBanButtonClick() {
     if (bannedUsers) unbanUser(userObject._id, mutate)
