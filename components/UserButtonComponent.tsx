@@ -1,7 +1,7 @@
 import { KeyedMutator } from "swr"
 import { ObjectId } from "mongodb"
 import HoverWindow from "./HoverWindow"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { UserButtonComponentProps } from "../pages/types"
 import { CSSTransition } from "react-transition-group"
 import SettingsMenu from "./SettingsMenu"
@@ -9,10 +9,11 @@ import SettingsMenu from "./SettingsMenu"
 const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComponentProps) => {
   const [showHoverWindow, setShowHoverWindow] = useState(false)
   const [showSettingsMenu, setShowSettingsMenu] = useState(false)
-  const [showSelf, setShowSelf] = useState(true)
+  const [showUserButtonComponent, setShowUserButtonComponent] = useState(true)
+  const userButtonComponentRef = useRef(null)
   return (
-    <div className="w-min">
-      {showSelf ?
+    <div ref={userButtonComponentRef} className="w-min">
+      {showUserButtonComponent ?
         <div className="my-1 p-1 px-2 border-2 flex items-center min-w-max">
           <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
           <button onClick={() => { setShowSettingsMenu(prev => !prev) }}>
@@ -25,7 +26,7 @@ const UserButtonComponent = ({ userObject, mutate, bannedUsers }: UserButtonComp
               <HoverWindow userObject={userObject} />
             </CSSTransition>
             <CSSTransition in={showSettingsMenu} timeout={200} classNames="hover-window" unmountOnExit>
-              <SettingsMenu userObject={userObject} bannedUsers={bannedUsers} setShowSelf={setShowSelf} mutate={mutate}/>
+              <SettingsMenu userObject={userObject} bannedUsers={bannedUsers} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} mutate={mutate}/>
             </CSSTransition>
           </span>
         </div> : ""}
