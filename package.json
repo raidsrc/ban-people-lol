@@ -10,6 +10,9 @@
     "tailwindjit": "npx tailwindcss -i ./styles/styles.css -o ./styles/output.css --watch"
   },
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.5.2",
     "mongodb": "^4.4.1",
     "next": "12.1.0",
     "react": "17.0.2",
