@@ -16,7 +16,9 @@ const Home: NextPage = () => {
         <p>This page contains links to the BPL Forums User Lists. There are two lists: one for banned users and one for unbanned users.</p>
         <p>It turns out that our forum's users aren't very good internet citizens. Every single one of them has gotten themselves banned at least once. If you hover over each user, you'll get to see their user info, including how many times they've been banned in the past. I'm giving you admin privileges for the time being, so if you open a user's settings menu, you'll have the chance to ban or unban them. Go wild with it. </p>
         <div className='py-4'>
-          <Box sx={{}}>
+          <Box
+          // sx={{borderWidth: "1px", borderColor: "black", borderRadius: "6px"}}
+          >
             <List>
               <ListItem>
                 <Link href="/banned-users" >
