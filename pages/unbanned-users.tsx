@@ -1,12 +1,10 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import useSWR, { mutate } from 'swr'
+import useSWR from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
 import { userObjectType } from './_types'
 import UserButtonComponent from '../components/UserButtonComponent'
-import { CSSTransition } from 'react-transition-group'
-import { Component, useState, useEffect, createContext, useContext } from 'react'
 import { BanContext } from './_contexts'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))

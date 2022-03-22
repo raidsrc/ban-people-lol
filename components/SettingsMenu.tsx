@@ -2,7 +2,6 @@ import { ObjectId } from "mongodb"
 import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useState } from "react"
 import { KeyedMutator } from "swr"
 import type { userObjectType } from "../pages/_types"
-import { useRef } from "react"
 import { BanContext } from "../pages/_contexts"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
