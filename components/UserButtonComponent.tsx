@@ -30,7 +30,7 @@ const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) =
       {showUserButtonComponent ?
         <div ref={userButtonComponentRef} >
           <Card className='my-4 overflow-visible'>
-            <CardContent className="flex items-center -my-2">
+            <div className="flex items-center p-2">
               <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
               <IconButton className="-p-1" onClick={() => { setShowSettingsMenu(prev => !prev) }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -45,7 +45,7 @@ const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) =
                   <SettingsMenu userObject={userObject} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate} />
                 </CSSTransition>
               </span>
-            </CardContent>
+            </div>
           </Card>
 
         </div>

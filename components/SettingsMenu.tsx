@@ -21,16 +21,16 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
     setShowUserButtonComponent(false)
   }
   return (
-    <List ref={settingsMenuRef} className="bg-slate-100 absolute z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
+    <List ref={settingsMenuRef} className="bg-slate-200 absolute z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
       {/* <div className="w-4 h-4 top-12 -left-2 rotate-45 bg-inherit border-2 border-black absolute"> </div> */}
       {
         bannedOrUnbanned.bannedUsers ?
           <ListItem disablePadding>
-            <ListItemButton onClick={handleBanButtonClick} className="">Unban</ListItemButton>
+            <ListItemButton onClick={handleBanButtonClick} className="bg-green-200 hover:bg-green-300">Unban</ListItemButton>
           </ListItem>
           :
           <ListItem disablePadding>
-            <ListItemButton onClick={handleBanButtonClick} className="">Ban!</ListItemButton>
+            <ListItemButton onClick={handleBanButtonClick} className="bg-red-200 hover:bg-red-300">Ban!</ListItemButton>
           </ListItem>
       }
     </List>
