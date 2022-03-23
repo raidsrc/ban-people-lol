@@ -642,6 +642,16 @@ a:hover {
   margin-bottom: -0.75rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.-my-4 {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
 .ml-4 {
   margin-left: 1rem;
 }
@@ -666,6 +676,10 @@ a:hover {
   height: 1rem;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .w-80 {
   width: 20rem;
 }
@@ -680,6 +694,10 @@ a:hover {
   width: min-content;
 }
 
+.w-0 {
+  width: 0px;
+}
+
 .rotate-45 {
   --tw-rotate: 45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -687,6 +705,10 @@ a:hover {
 
 .items-center {
   align-items: center;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
 
 .border-2 {
@@ -721,6 +743,16 @@ a:hover {
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 }
@@ -749,6 +781,11 @@ a:hover {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .font-bold {

@@ -29,7 +29,7 @@ const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) =
     <div>
       {showUserButtonComponent ?
         <div ref={userButtonComponentRef} >
-          <Card className='my-2 '>
+          <Card className='my-4 overflow-visible'>
             <CardContent className="flex items-center -my-2">
               <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
               <IconButton className="-p-1" onClick={() => { setShowSettingsMenu(prev => !prev) }}>
@@ -37,16 +37,17 @@ const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) =
                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                 </svg>
               </IconButton>
+              <span className='relative'>
+                <CSSTransition in={showHoverWindow} timeout={200} classNames="hover-window" unmountOnExit>
+                  {showSettingsMenu ? <div className="w-0 h-0 absolute" /> : <HoverWindow userObject={userObject} />}
+                </CSSTransition>
+                <CSSTransition in={showSettingsMenu} timeout={200} classNames="hover-window" unmountOnExit>
+                  <SettingsMenu userObject={userObject} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate} />
+                </CSSTransition>
+              </span>
             </CardContent>
           </Card>
-          <span className='relative'>
-            <CSSTransition in={showHoverWindow} timeout={200} classNames="hover-window" unmountOnExit>
-              {showSettingsMenu ? <div /> : <HoverWindow userObject={userObject} />}
-            </CSSTransition>
-            <CSSTransition in={showSettingsMenu} timeout={200} classNames="hover-window" unmountOnExit>
-              <SettingsMenu userObject={userObject} setShowUserButtonComponent={setShowUserButtonComponent} setShowSettingsMenu={setShowSettingsMenu} settingsMenuRef={settingsMenuRef} mutate={mutate} />
-            </CSSTransition>
-          </span>
+
         </div>
         : ""}
     </div>
