@@ -3,6 +3,7 @@ import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useS
 import { KeyedMutator } from "swr"
 import type { userObjectType } from "../pages/_types"
 import { BanContext } from "../pages/_contexts"
+import { Button, Paper } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -20,15 +21,15 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
     setShowUserButtonComponent(false)
   }
   return (
-    <span ref={settingsMenuRef} className="p-5 border-2 border-black absolute bottom-1 left-44 bg-slate-100 bg-opacity-90 shadow-md z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
+    <Paper variant="outlined" elevation={3} ref={settingsMenuRef} className="p-5 absolute bottom-1 left-44 bg-slate-100 bg-opacity-90 z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
       {/* <div className="w-4 h-4 top-12 -left-2 rotate-45 bg-inherit border-2 border-black absolute"> </div> */}
       {
         bannedOrUnbanned.bannedUsers ?
-          <button onClick={handleBanButtonClick} className="bg-green-300 border border-black p-1">Unban</button>
+          <Button onClick={handleBanButtonClick} variant="outlined" color="success" className="font-semibold">Unban</Button>
           :
-          <button onClick={handleBanButtonClick} className="bg-red-300 border border-black p-1">Ban!</button>
+          <Button onClick={handleBanButtonClick} variant="outlined" color="error" className="font-semibold">Ban!</Button>
       }
-    </span>
+    </Paper>
   )
 }
 
