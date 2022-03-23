@@ -20,7 +20,7 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
     setShowUserButtonComponent(false)
   }
   return (
-    <span ref={settingsMenuRef} className="p-5 border-2 border-black absolute ml-10 -bottom-10 bg-slate-100 bg-opacity-90 shadow-md z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
+    <span ref={settingsMenuRef} className="p-5 border-2 border-black absolute bottom-1 left-44 bg-slate-100 bg-opacity-90 shadow-md z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
       {/* <div className="w-4 h-4 top-12 -left-2 rotate-45 bg-inherit border-2 border-black absolute"> </div> */}
       {
         bannedOrUnbanned.bannedUsers ?
@@ -32,7 +32,7 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
   )
 }
 
-async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined, bannedUsers: boolean) {
+async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined, bannedUsers: boolean): Promise<void> {
   const reqBody = JSON.stringify({
     "_id": userId
   })
