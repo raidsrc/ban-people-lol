@@ -1,8 +1,9 @@
 import { ObjectId } from "mongodb"
 import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useState } from "react"
 import { KeyedMutator } from "swr"
-import type { userObjectType } from "../pages/_types"
-import { BanContext } from "../pages/_contexts"
+import type { userObjectType } from "../lib/_types"
+import { BanContext } from "../lib/_contexts"
+import { List, ListItem, ListItemButton } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -20,19 +21,22 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
     setShowUserButtonComponent(false)
   }
   return (
-    <span ref={settingsMenuRef} className="p-5 border-2 border-black absolute ml-10 -bottom-10 bg-slate-100 bg-opacity-90 shadow-md z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
-      {/* <div className="w-4 h-4 top-12 -left-2 rotate-45 bg-inherit border-2 border-black absolute"> </div> */}
+    <List ref={settingsMenuRef} sx={{position: "absolute"}} className="bg-slate-200 z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
       {
         bannedOrUnbanned.bannedUsers ?
-          <button onClick={handleBanButtonClick} className="bg-green-300 border border-black p-1">Unban</button>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleBanButtonClick} sx={{ backgroundColor: "rgb(187 247 208)", ":hover": { backgroundColor: "rgb(134 239 172)" } }}>Unban</ListItemButton>
+          </ListItem>
           :
-          <button onClick={handleBanButtonClick} className="bg-red-300 border border-black p-1">Ban!</button>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleBanButtonClick} sx={{ backgroundColor: "rgb(254 202 202)", ":hover": { backgroundColor: "rgb(252 165 165)" } }}>Ban!</ListItemButton>
+          </ListItem>
       }
-    </span>
+    </List>
   )
 }
 
-async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined, bannedUsers: boolean) {
+async function banOrUnbanUser(userId: ObjectId, mutate: KeyedMutator<Array<Object>> | undefined, bannedUsers: boolean): Promise<void> {
   const reqBody = JSON.stringify({
     "_id": userId
   })

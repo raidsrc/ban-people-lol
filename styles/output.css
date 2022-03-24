@@ -520,10 +520,15 @@ a:hover {
 }
 
 .std-container {
+  margin-bottom: 4rem;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   padding-left: 7rem;
   padding-right: 7rem;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .absolute {
@@ -534,20 +539,12 @@ a:hover {
   position: relative;
 }
 
-.-bottom-14 {
-  bottom: -3.5rem;
-}
-
 .top-12 {
   top: 3rem;
 }
 
 .-left-2 {
   left: -0.5rem;
-}
-
-.-bottom-10 {
-  bottom: -2.5rem;
 }
 
 .z-10 {
@@ -558,21 +555,8 @@ a:hover {
   z-index: 20;
 }
 
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.ml-6 {
-  margin-left: 1.5rem;
-}
-
-.ml-10 {
-  margin-left: 2.5rem;
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .mr-4 {
@@ -591,6 +575,10 @@ a:hover {
   height: 1rem;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .w-80 {
   width: 20rem;
 }
@@ -599,16 +587,8 @@ a:hover {
   width: 1rem;
 }
 
-.w-min {
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-}
-
-.min-w-max {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
+.w-0 {
+  width: 0px;
 }
 
 .rotate-45 {
@@ -620,16 +600,8 @@ a:hover {
   align-items: center;
 }
 
-.border {
-  border-width: 1px;
-}
-
 .border-2 {
   border-width: 2px;
-}
-
-.border-t-0 {
-  border-top-width: 0px;
 }
 
 .border-black {
@@ -646,14 +618,9 @@ a:hover {
   background-color: inherit;
 }
 
-.bg-green-300 {
+.bg-slate-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
-}
-
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-90 {
@@ -668,22 +635,9 @@ a:hover {
   padding: 0.5rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
-}
-
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .capitalize {
@@ -694,24 +648,6 @@ a:hover {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition {
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.duration-150 {
-  transition-duration: 150ms;
 }
 
 .hover-window-enter {
@@ -748,14 +684,4 @@ a:hover {
 .users-container-exit-active {
   opacity: 0;
   transition: opacity 300ms ease;
-}
-
-.hover\:border-gray-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
-.hover\:underline:hover {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
 }

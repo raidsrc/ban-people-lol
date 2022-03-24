@@ -14,12 +14,15 @@ const Home: NextPage = () => {
       <div className='std-container'>
         <h1>BPL Forums User Lists</h1>
         <p>This page contains links to the BPL Forums User Lists. There are two lists: one for banned users and one for unbanned users.</p>
-        <p>It turns out that our forum's users aren't very good internet citizens. Every single one of them has gotten themselves banned at least once. If you hover over each user, you'll get to see their user info, including how many times they've been banned in the past. I'm giving you admin privileges for the time being, so if you open a user's settings menu, you'll have the chance to ban or unban them. Go wild with it. </p>
+        <p>{"It turns out that our forum's users aren't very good internet citizens. Every single one of them has gotten themselves banned at least once. If you hover over each user, you'll get to see their user info, including how many times they've been banned in the past. I'm giving you admin privileges for the time being, so if you open a user's settings menu, you'll have the chance to ban or unban them. Go wild with it. "}</p>
         <div className='py-4'>
-          <Box sx={{}}>
+          <Box
+          // sx={{borderWidth: "1px", borderColor: "black", borderRadius: "6px"}}
+          >
             <List>
               <ListItem>
-                <Link href="/banned-users" >
+                <Link href="/banned-users" passHref >
+
                   <ListItemButton>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
                       <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
@@ -31,7 +34,7 @@ const Home: NextPage = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="/unbanned-users" >
+                <Link href="/unbanned-users" passHref >
                   <ListItemButton>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
                       <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />

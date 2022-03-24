@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { userObjectType } from './_types'
+import { userObjectType } from '../lib/_types'
 import UserButtonComponent from '../components/UserButtonComponent'
-import { BanContext } from './_contexts'
+import { BanContext } from '../lib/_contexts'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
