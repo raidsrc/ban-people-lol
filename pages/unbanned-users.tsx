@@ -3,9 +3,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import useSWR from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
-import { userObjectType } from './_types'
+import { userObjectType } from '../lib/_types'
 import UserButtonComponent from '../components/UserButtonComponent'
-import { BanContext } from './_contexts'
+import { BanContext } from '../lib/_contexts'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 

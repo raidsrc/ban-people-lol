@@ -1,6 +1,6 @@
 import HoverWindow from "./HoverWindow"
 import { useState, useRef, useEffect, MutableRefObject, useContext, createContext } from "react"
-import { UserButtonComponentProps } from "../pages/_types"
+import { UserButtonComponentProps } from "../lib/_types"
 import { CSSTransition } from "react-transition-group"
 import SettingsMenu from "./SettingsMenu"
 import { Card, CardActionArea, CardContent, IconButton } from "@mui/material"

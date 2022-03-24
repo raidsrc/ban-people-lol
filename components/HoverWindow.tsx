@@ -1,5 +1,5 @@
 import { Card, Paper } from "@mui/material"
-import type { userObjectType } from "../pages/_types"
+import type { userObjectType } from "../lib/_types"
 
 
 const HoverWindow = ({ userObject }: {

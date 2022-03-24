@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb"
 import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useState } from "react"
 import { KeyedMutator } from "swr"
-import type { userObjectType } from "../pages/_types"
-import { BanContext } from "../pages/_contexts"
+import type { userObjectType } from "../lib/_types"
+import { BanContext } from "../lib/_contexts"
 import { Button, List, ListItem, ListItemButton, Paper } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
