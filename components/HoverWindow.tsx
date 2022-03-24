@@ -1,4 +1,4 @@
-import { Card, Paper } from "@mui/material"
+import { Paper } from "@mui/material"
 import type { userObjectType } from "../lib/_types"
 
 

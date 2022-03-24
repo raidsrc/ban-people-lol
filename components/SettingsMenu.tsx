@@ -3,7 +3,7 @@ import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useS
 import { KeyedMutator } from "swr"
 import type { userObjectType } from "../lib/_types"
 import { BanContext } from "../lib/_contexts"
-import { Button, List, ListItem, ListItemButton, Paper } from "@mui/material"
+import { List, ListItem, ListItemButton } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -21,16 +21,15 @@ const SettingsMenu = ({ userObject, setShowUserButtonComponent, setShowSettingsM
     setShowUserButtonComponent(false)
   }
   return (
-    <List ref={settingsMenuRef} className="bg-slate-200 absolute z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
-      {/* <div className="w-4 h-4 top-12 -left-2 rotate-45 bg-inherit border-2 border-black absolute"> </div> */}
+    <List ref={settingsMenuRef} sx={{position: "absolute"}} className="bg-slate-200 z-20" onMouseLeave={() => { setShowSettingsMenu(false) }}>
       {
         bannedOrUnbanned.bannedUsers ?
           <ListItem disablePadding>
-            <ListItemButton onClick={handleBanButtonClick} className="bg-green-200 hover:bg-green-300">Unban</ListItemButton>
+            <ListItemButton onClick={handleBanButtonClick} sx={{ backgroundColor: "rgb(187 247 208)", ":hover": { backgroundColor: "rgb(134 239 172)" } }}>Unban</ListItemButton>
           </ListItem>
           :
           <ListItem disablePadding>
-            <ListItemButton onClick={handleBanButtonClick} className="bg-red-200 hover:bg-red-300">Ban!</ListItemButton>
+            <ListItemButton onClick={handleBanButtonClick} sx={{ backgroundColor: "rgb(254 202 202)", ":hover": { backgroundColor: "rgb(252 165 165)" } }}>Ban!</ListItemButton>
           </ListItem>
       }
     </List>

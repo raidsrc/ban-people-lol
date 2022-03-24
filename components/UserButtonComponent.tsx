@@ -29,7 +29,7 @@ const UserButtonComponent = ({ userObject, mutate }: UserButtonComponentProps) =
     <div>
       {showUserButtonComponent ?
         <div ref={userButtonComponentRef} >
-          <Card className='my-4 overflow-visible'>
+          <Card sx={{marginY: "10px", overflow: "visible"}}>
             <div className="flex items-center p-2">
               <span className="mr-4" onMouseEnter={() => { setShowHoverWindow(true) }} onMouseLeave={() => { setShowHoverWindow(false) }} >{userObject.username}</span>
               <IconButton className="-p-1" onClick={() => { setShowSettingsMenu(prev => !prev) }}>
