@@ -520,7 +520,7 @@ a:hover {
 }
 
 .std-container {
-  margin-bottom: 4rem;
+  margin-bottom: 7rem;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   padding-left: 7rem;
@@ -583,12 +583,12 @@ a:hover {
   width: 1rem;
 }
 
-.w-0 {
-  width: 0px;
-}
-
 .w-full {
   width: 100%;
+}
+
+.w-0 {
+  width: 0px;
 }
 
 .rotate-45 {
@@ -602,10 +602,6 @@ a:hover {
 
 .justify-end {
   justify-content: flex-end;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
 }
 
 .rounded {
