@@ -5,26 +5,38 @@ import useSWR from 'swr'
 import { userObjectType } from '../lib/_types'
 import UserButtonComponent from '../components/UserButtonComponent'
 import { BanContext } from '../lib/_contexts'
+import { useSession } from 'next-auth/react'
+import NotSignedIn from '../components/NotSignedIn'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
 const BannedUsersPage: NextPage = () => {
+
+  const { data: session } = useSession()
+
   return (
     <>
-      <Head>
-        <title>Banned Users</title>
-      </Head>
+      {session ? 
+      <>
+        <Head>
+          <title>Banned Users</title>
+        </Head>
+        <div className='std-container'>
+          <div>
+            <Link href="/">Back</Link>
+          </div>
+          <h1>Banned Users</h1>
+          <div>
+            <BanContext.Provider value={{ bannedUsers: true }}>
+              <BannedUsersContainer />
+            </BanContext.Provider>
+          </div>
+        </div>
+      </>
+      :
       <div className='std-container'>
-        <div>
-          <Link href="/">Back</Link>
-        </div>
-        <h1>Banned Users</h1>
-        <div>
-          <BanContext.Provider value={{ bannedUsers: true }}>
-            <BannedUsersContainer />
-          </BanContext.Provider>
-        </div>
-      </div>
+        <NotSignedIn></NotSignedIn>
+      </div>}
     </>
   )
 }

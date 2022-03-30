@@ -5,8 +5,10 @@ import useSWR from 'swr'
 // TODO: investigate global mutator signature and how it's diff from keyed
 import { userObjectType } from '../lib/_types'
 import UserButtonComponent from '../components/UserButtonComponent'
+import TopBar from '../components/TopBar'
 import { BanContext } from '../lib/_contexts'
 import { useSession, signIn } from 'next-auth/react'
+import NotSignedIn from '../components/NotSignedIn'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
 
@@ -19,6 +21,7 @@ const UnbannedUsersPage: NextPage = () => {
     <>
       {session ? 
       <div>
+        <TopBar />
         <Head>
           <title>Unbanned Users</title>
         </Head>
@@ -35,8 +38,8 @@ const UnbannedUsersPage: NextPage = () => {
         </div>
       </div>
       :
-      <div>
-        
+      <div className='std-container'>
+        <NotSignedIn></NotSignedIn>
       </div>}
     </>
   )
