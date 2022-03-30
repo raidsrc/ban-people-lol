@@ -5,7 +5,7 @@ export default function NotSignedIn() {
     <div>
       <div>nah homie you gotta be signed in to see this</div>
       <br />
-      <button onClick={()=>{signIn()}} className="border p-3">Click me to sign in</button>
+      <button onClick={()=>{signIn()}} className="border rounded p-3 hover:border-gray-600 transition">Click me to sign in</button>
     </div>
   )
 }
