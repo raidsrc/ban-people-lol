@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 import { List, ListItem, Box, ListItemButton, ListItemText } from '@mui/material'
 import TopBar from '../components/TopBar'
-import { useSession, signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import NotSignedIn from '../components/NotSignedIn'
 
 const Home: NextPage = () => {

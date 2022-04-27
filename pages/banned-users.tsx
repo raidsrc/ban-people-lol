@@ -9,6 +9,21 @@ import { useSession } from 'next-auth/react'
 import NotSignedIn from '../components/NotSignedIn'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
+// const fetcherWaitPromise: Promise<string> = new Promise((resolutionFunction, rejectionFunction) => {
+//   setTimeout(() => {
+//     resolutionFunction("sup")
+//   }, 5000)
+// })
+// async function functionWrappingFetcherWaitPromise(whatever: Response) {
+//   await fetcherWaitPromise
+//   return whatever
+// }
+// function fetcher(url: string) {
+//   const fetchResult = fetch(url)
+//   .then(res => functionWrappingFetcherWaitPromise(res)).then(res => res.json()).catch(err => console.error(err))
+//   return fetchResult
+// }
+
 
 const BannedUsersPage: NextPage = () => {
 
@@ -16,27 +31,27 @@ const BannedUsersPage: NextPage = () => {
 
   return (
     <>
-      {session ? 
-      <>
-        <Head>
-          <title>Banned Users</title>
-        </Head>
+      {session ?
+        <>
+          <Head>
+            <title>Banned Users</title>
+          </Head>
+          <div className='std-container'>
+            <div>
+              <Link href="/">Back</Link>
+            </div>
+            <h1>Banned Users</h1>
+            <div>
+              <BanContext.Provider value={{ bannedUsers: true }}>
+                <BannedUsersContainer />
+              </BanContext.Provider>
+            </div>
+          </div>
+        </>
+        :
         <div className='std-container'>
-          <div>
-            <Link href="/">Back</Link>
-          </div>
-          <h1>Banned Users</h1>
-          <div>
-            <BanContext.Provider value={{ bannedUsers: true }}>
-              <BannedUsersContainer />
-            </BanContext.Provider>
-          </div>
-        </div>
-      </>
-      :
-      <div className='std-container'>
-        <NotSignedIn></NotSignedIn>
-      </div>}
+          <NotSignedIn></NotSignedIn>
+        </div>}
     </>
   )
 }

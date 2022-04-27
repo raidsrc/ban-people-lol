@@ -7,7 +7,7 @@ import { userObjectType } from '../lib/_types'
 import UserButtonComponent from '../components/UserButtonComponent'
 import TopBar from '../components/TopBar'
 import { BanContext } from '../lib/_contexts'
-import { useSession, signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import NotSignedIn from '../components/NotSignedIn'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => console.error(err))
