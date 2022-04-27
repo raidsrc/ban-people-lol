@@ -1905,9 +1905,9 @@
   "version" "1.4.0"
 
 "next-auth@^4.3.1":
-  "integrity" "sha512-DBYEPBLq5naIqh/1i2zEHljcA1OXXecKW3NRU1W4s6R3UX3RdLZ2lWlqgBHUiZQ1zdNikFM/bYQxVGyG7bx8oA=="
-  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.3.1.tgz"
-  "version" "4.3.1"
+  "integrity" "sha512-bUs+oOOPT18Pq/+4v9q4PA/DGoVoAX6jwY7RTfE/akFXwlny+y/mNS6lPSUwpqcHjljqBaq34PQA3+01SdOOPw=="
+  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.3.3.tgz"
+  "version" "4.3.3"
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
